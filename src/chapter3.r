@@ -2,13 +2,13 @@ library(ggplot2)
 library(dplyr)
 library(lmPerm)
 
-PSDS_PATH <- file.path('~', 'statistics-for-data-scientists')
+PSDS_PATH <- file.path('C:/Users/86136/Documents/GitHub/(cloned)statistics-for-data-scientists', 'psds_data')
 
-session_times <- read.csv(file.path(PSDS_PATH, 'data', 'web_page_data.csv'))
+session_times <- read.csv(file.path(PSDS_PATH, 'web_page_data.csv'))
 session_times[,2] <- session_times[,2] * 100
-four_sessions  <- read.csv(file.path(PSDS_PATH, 'data', 'four_sessions.csv'))
-click_rate <-  read.csv(file.path(PSDS_PATH, 'data', 'click_rates.csv'))
-imanishi <-  read.csv(file.path(PSDS_PATH, 'data', 'imanishi_data.csv'))
+four_sessions  <- read.csv(file.path(PSDS_PATH, 'four_sessions.csv'))
+click_rate <-  read.csv(file.path(PSDS_PATH,  'click_rates.csv'))
+imanishi <-  read.csv(file.path(PSDS_PATH, 'imanishi_data.csv'))
 
 ## Code snippet 3.1
 ggplot(session_times, aes(x=Page, y=Time)) + 
@@ -65,7 +65,14 @@ mean(perm_diffs > obs_pct_diff)
 
 prop.test(x=c(200,182), n=c(23739,22588), alternative="greater")
 ## Histogram of resample
-## t-test
+
+
+
+#############################
+########## t-test ###########
+#############################
+# - a good approximation to the permutation (shuffled) distribution was the t-test
+
 t.test(Time ~ Page, data=session_times, alternative='less' )
 
 ## session times

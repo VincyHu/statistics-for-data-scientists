@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+author: "vincy hu"
+date: "5/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# t-test 
+1. overview of t-test  
+  + a good approximation to the permutation (shuffled) distribution was the t-test! Since there were not enough computing power for permutation test at that time    
+  + used for the very common two-sample comparison — A/B test — in which the data is numeric.  
+
+2. Questions to mark  
+  + what's the prerequisite to run the t-test
+  +
+```{r}
+1+2
+```
+  
+
