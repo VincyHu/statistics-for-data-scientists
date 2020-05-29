@@ -9,16 +9,55 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(ggplot2)
+library(dplyr)
+library(lmPerm)
+```
+
+
 # t-test 
 1. overview of t-test  
   + a good approximation to the permutation (shuffled) distribution was the t-test! Since there were not enough computing power for permutation test at that time    
   + used for the very common two-sample comparison — A/B test — in which the data is numeric.  
+  + t-test is testing for difference of sample mean
 
 2. Questions to mark  
   + what's the prerequisite to run the t-test
   +
 ```{r}
-1+2
+t.test(Time ~ Page, data=session_times, alternative='less' )
+```
+
+In a resampling mode, we structure the solution to reflect the observed data and
+the hypothesis to be tested, not worrying about whether the data is numeric or
+binary, sample sizes are balanced or not, sample variances, or a variety of other
+factors.
+
+
+# ANOVA - Analysis of variance
+1. Overview
+  + It's comparing mean of a numeric value in different group, if it's one-way, then one type of group deconstruction(for example, the different type of diet).
+  + If there are only two category in the one-way variable, then it's the same as two-sample t-test
+  + You can see that ANOVA, then two-way ANOVA, are the first steps on the road toward a full statistical model, such as regression and logistic regression
+
+2. Test statistics
+  + F-statistic is based on the ratio of the variance across group means (i.e., the treatment effect) to the variance due to residual error
+```{r}
+# one-way anova
+
+png(filename=file.path(PSDS_PATH, 'figures', 'psds_0306.png'),  width = 4, height=4, units='in', res=300)
+
+ggplot(four_sessions, aes(x=Page, y=Time)) + 
+  geom_boxplot() +
+  labs(y='Time (in seconds)') +
+  theme_bw()
+
+dev.off()
+
+
+summary(aovp(Time ~ Page, data=four_sessions)) # permutation test to compare the variance 
+summary(aov(Time ~ Page, data=four_sessions)) # one-way anova
 ```
   
 
